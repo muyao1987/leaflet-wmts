@@ -1,4 +1,4 @@
-﻿/** 
+/** 
  * WMTS服务调用插件
  * @author 木遥原创(qq:346819890) 
  */
@@ -8,8 +8,7 @@ L.TileLayer.WMTS = L.TileLayer.extend({
         style: 'default',
         tilematrixSet: '',
         format: 'image/png',
-        tileSize: 256,
-        matrixIds: null,
+        tileSize: 256, 
         layer: '',
     },
     //todo 自动获取Capabilities
@@ -22,7 +21,14 @@ L.TileLayer.WMTS = L.TileLayer.extend({
         if (this.options.zOffset)
             zoom = zoom + this.options.zOffset;
 
-        var ident = this.options.matrixIds ? this.options.matrixIds[zoom].identifier : zoom;
+        var ident;
+        if (this.options.matrixIds)
+            ident = this.options.matrixIds[zoom];
+        else if (this.options.tilematrixBefore)
+            ident = this.options.tilematrixBefore + zoom;
+        else
+            ident = zoom;
+
         var url = L.Util.template(this._url, { s: this._getSubdomain(coords) });
         var obj = {
             service: 'WMTS',
