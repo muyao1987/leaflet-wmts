@@ -16,6 +16,13 @@ L.TileLayer.WMTS = L.TileLayer.extend({
         this._url = url;
         L.setOptions(this, options);
     },
+    getParamString: function (obj, existingUrl, uppercase) {
+        var params = [];
+        for (var i in obj) {
+            params.push((uppercase ? i.toUpperCase() : i) + '=' + (obj[i]));
+        }
+        return ((!existingUrl || existingUrl.indexOf('?') === -1) ? '?' : '&') + params.join('&');
+    },
     getTileUrl: function (coords) { // (Point, Number) -> String
         var zoom = this._getZoomForUrl();
         if (this.options.zOffset)
@@ -44,7 +51,7 @@ L.TileLayer.WMTS = L.TileLayer.extend({
             tilerow: coords.y,
             tilecol: coords.x
         };
-        return url + L.Util.getParamString(obj, url);
+        return url + this.getParamString(obj, url);
     }
 });
 
