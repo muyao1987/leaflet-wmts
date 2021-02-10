@@ -1,6 +1,6 @@
 # leaflet加载wmts图层 
  
- [在线Demo](http://leaflet.marsgis.cn/leaflet-example/13_layer_wmts.html) 
+ [在线Demo](http://mars2d.cn/example/13_layer_wmts.html) 
 
 
 ```javascript
@@ -19,4 +19,4 @@
 
 
 ## 其他
-更多Leaflet示例请点击： [http://leaflet.marsgis.cn](http://leaflet.marsgis.cn)
+更多Leaflet示例请点击： [http://mars2d.cn](http://mars2d.cn)
